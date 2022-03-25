@@ -1,8 +1,9 @@
 var btn = document.querySelector('button');
-btn.onclick = displayMessage;
+btn.onclick = function(){
+    displayMessage('Issa: Hi there, how are you today?','chat');
+};
 
-function displayMessage(){
-    
+function displayMessage(msgTxt, msgType){
     var html = document.querySelector('html');
 
     var panel = document.createElement('div');
@@ -10,7 +11,7 @@ function displayMessage(){
     html.appendChild(panel);
 
     var msg = document.createElement('p');
-    msg.textContent = 'This is a message box';
+    msg.textContent = msgTxt;
     panel.appendChild(msg);
 
     var closeBtn = document.createElement('button');
@@ -19,5 +20,18 @@ function displayMessage(){
 
     closeBtn.onclick = function() {
       panel.parentNode.removeChild(panel);
+    }
+
+    if (msgType === "warning"){
+        msg.style.backgroundImage = 'url(icons/warning.png)';
+        panel.style.backgroundColor = 'orange';
+        closeBtn.style.color = "#222";
+    } else if (msgType === "chat"){
+        msg.style.backgroundImage = 'url(icons/chat.png)';
+        panel.style.backgroundColor = 'aqua';
+        closeBtn.style.color = "#222";
+        msg.style.color = "#222";
+    }else {
+        msg.style.paddingLeft = '20px';
     }
 }
